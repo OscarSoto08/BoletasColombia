@@ -13,12 +13,22 @@
 </head>
 <body>
     <?php
-     include 'logica/header.php';
+     include 'Encabezado.php';
      include 'persistencia/Conexion.php';
      $conexion = new Conexion();
     ?>
     <div class="container mt-5">
-        <h1>Hola mundo</h1>
+        <div class="row text-center">
+            <div class="col">
+                
+            </div>
+            <div class="col">
+                Column
+            </div>
+            <div class="col">
+                Column
+            </div>
+        </div>
     </div>
 </body>
 </html>
