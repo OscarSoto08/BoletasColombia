@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+#logo {
+    height: 50px;
+    width: 50px; /* Mantener la proporción de la imagen */
+}
+
+body {
+    position: relative;
+    padding: 0; /* Eliminar padding del body */
+}
+
+.container-fluid {
+    width: 100%; /* Asegurarse de que el contenedor fluya */
+}
+
+.container {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgb(133, 133, 133);
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px; /* Espaciado interno */
+}
+
+#contenedor {
+    background-color: rgb(202, 202, 202);
+    width: 100%;
+}
+
+/* Media Queries */
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;
+    }
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+}
