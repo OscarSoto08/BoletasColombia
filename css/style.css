@@ -1,0 +1,61 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1717;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+h1 ,h2{
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#carrusel{
+    height: 300px;
+    background-color: #A67C52;
+}
+.carousel-item p{
+    color: black;
+    margin: 0;
+}
+.carousel-item img{
+    margin: 0;
+    height: 300px;
+    width: 300px;
+    object-fit: contain;
+}
+
+.card-body{
+    background-color: linen;
+}
+.card{
+    background-color: #A67C52;
+}
+nav{
+    background-color: #255d8b;
+}
+.card button{
+    background-color: #3cb4ff;
+}
+
+.navbar-brand, .navbar-nav{
+    font-size: 20px;
+}
+.navbar-nav {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end; /* Distribuir uniformemente los elementos */
+    margin-right: 40px;
+}
+
+.navbar-brand{
+    margin-left: 40px;
+}
