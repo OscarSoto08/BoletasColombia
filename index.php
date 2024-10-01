@@ -12,56 +12,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Barra de Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
-        <a class="navbar-brand" href="#">Boletas Colombia</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ingresar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+   <?php include 'Encabezado.php'; ?>
 
     <h2 class="text-center mb-4">TOP Eventos</h2>
     
-    <!-- Carrusel -->
-    <div id="carrusel" class="carousel slide">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <p class="text-center mt-3 fs-3">Destacado 1</p>
-                <img src="img/icono.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <p class="text-center mt-3 fs-3">Destacado 2</p>
-                <img src="img/icono.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <p class="text-center mt-3 fs-3">Destacado 3</p>
-                <img src="img/icono.png" class="d-block w-100" alt="...">
-            </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carrusel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carrusel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+    <?php include 'Carrusel.php' ?>
 
     <!-- Contenedor Principal -->
     <div class="container mt-4">
