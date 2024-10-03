@@ -1,43 +1,128 @@
-* {
-    box-sizing: border-box;
+/* Definición de variables de color */
+:root {
+    --color-fondo: #121212; /* Fondo oscuro */
+    --color-principal: #BB86FC; /* Color púrpura claro */
+    --color-texto: #E0E0E0; /* Gris claro */
+    --color-boton: #03DAC5; /* Verde azulado */
+    --color-blanco: #FFFFFF; /* Blanco */
+}
+
+*{
+    color:var(--color-texto);
+}
+
+
+
+/* Aplicación de variables en los estilos */
+body {
+    background-color: var(--color-fondo);
+    font-family: 'Arial', sans-serif;
+    color: var(--color-texto);
+}
+
+.header {
+    background-color: var(--color-principal);
+    color: var(--color-fondo);
+    padding: 30px 0;
+    text-align: center;
+    border-bottom: 5px solid var(--color-blanco);
+}
+
+.carousel-inner img {
+    height: 400px;
+    object-fit: contain; /* Cambiado a cover para mejor ajuste */
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #1E1E1E; /* Fondo de tarjeta oscuro */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.btn-primary {
+    background-color: var(--color-boton);
+    border: none;
+    transition: background-color 0.3s;
+    border-radius: 25px;
+}
+
+.btn-primary:hover {
+    background-color: #03B5A0; /* Color más oscuro para el hover */
+}
+
+footer {
+    background-color: var(--color-principal);
+    color: var(--color-fondo);
+    text-align: center;
+    padding: 20px 0;
+}
+
+h2 {
+    color: var(--color-principal);
+    font-weight: bold;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para la leyenda */
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--color-blanco);
+    border-radius: 50%;
+}
+
+@media (max-width: 576px) {
+    h2 {
+        font-size: 1.5rem;
+    }
 }
 
 #logo {
     height: 50px;
-    width: 50px; /* Mantener la proporción de la imagen */
+    width: 50px;
 }
 
-body {
-    position: relative;
-    padding: 0; /* Eliminar padding del body */
+.navbar {
+    background-color: var(--color-principal);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.container-fluid {
-    width: 100%; /* Asegurarse de que el contenedor fluya */
+.nav-link {
+    font-size: 1.1rem;
+    transition: color 0.3s;
+    color: var(--color-fondo);
 }
 
-.container {
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    border: 2px solid rgb(133, 133, 133);
-    background-color: white;
-    border-radius: 10px;
-    padding: 15px; /* Espaciado interno */
+.nav-link:hover {
+    color: var(--color-boton); /* Color de texto en hover */
 }
 
-#contenedor {
-    background-color: rgb(202, 202, 202);
-    width: 100%;
+.navbar-text .btn {
+    border-radius: 25px;
+    background-color: var(--color-boton);
+    color: var(--color-fondo);
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Media Queries */
-@media (max-width: 576px) {
-    body {
-        font-size: 14px;
-    }
-    .navbar-brand {
-        font-size: 1.2rem;
-    }
-    h1 {
-        font-size: 1.5rem;
-    }
+.navbar-toggler {
+    border: none;
+    background-color: var(--color-fondo);
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    background-color: transparent;
 }
