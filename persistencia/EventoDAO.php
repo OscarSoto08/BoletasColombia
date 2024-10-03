@@ -10,7 +10,7 @@ class EventoDAO{
     //Consultar todos
     public function consultarTodos(){
         $sql = 
-        "SELECT idEvento, nombre, descripcion, fecha direccion, aforo
+        "SELECT idEvento, nombre, descripcion, fecha, direccion, aforo
         FROM Evento";
         return $sql;
     }

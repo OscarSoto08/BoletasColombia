@@ -1,4 +1,6 @@
 <?php
+require_once './persistencia/Conexion.php';
+require './persistencia/EventoDAO.php';
 class Evento{
     private $idEvento;
     private $nombre;
@@ -50,7 +52,7 @@ class Evento{
         $this -> aforo = $aforo;
     }
     //Constructor, coloca los parametros nulos o vacios por defecto
-    public function __construct($idEvento = "", $nombre = "", $descripcion = "", $fecha = null, $direccion = "", $aforo = 0){
+    public function __construct($idEvento = "", $nombre = "", $descripcion = "", $fecha = null, $direccion = "", $aforo = ""){
         $this->idEvento = $idEvento;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
@@ -60,7 +62,22 @@ class Evento{
     }
 
     public function consultarTodos(){
-        
+        $Eventos = array();
+        $conn = new Conexion(); 
+        $conn->abrirConexion();
+        $EventoDAO = new EventoDAO();
+        $conn -> ejecutarConsulta($EventoDAO -> consultarTodos());
+        while($registro = $conn -> siguienteRegistro()){
+            $Evento = new Evento($registro[0],
+                $registro[1],
+                $registro[2],
+                $registro[3],
+                $registro[4],
+                $registro[5],
+            );
+            array_push($Eventos, $Evento);
+        }
+        return $Eventos;
     }
 }
 ?>
