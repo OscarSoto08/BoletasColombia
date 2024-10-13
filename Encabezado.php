@@ -22,7 +22,7 @@
                     </li>
                 </ul>
                 <span class="navbar-text ms-auto">
-                    <a class="btn btn-light" href="#" role="button">Iniciar Sesión</a>
+                    <a class="btn btn-light" href="iniciarSesion.php" role="button">Iniciar Sesión</a>
                 </span>
             </div>
         </div>
