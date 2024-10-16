@@ -9,22 +9,29 @@ $mensaje = "";
 $esProveedor = null;
 
 if (isset($_POST["registrar"])) {
-    echo "El rol selecionado es: ". $_POST["rol"];
-    if($_POST["rol"] == "proveedor"){
-        $esProveedor = true;
-        $persona = new Proveedor(null, $_POST["nombre"], $_POST["apellido"], $_POST["correo"], md5($_POST["clave"]), $_POST["telefono"], $_POST["direccion"]);
-    }if($_POST["rol"] ==  "cliente"){ 
-        $esProveedor = false;
-        $persona = new Cliente(null, $_POST["nombre"], $_POST["apellido"], $_POST["correo"], md5($_POST["clave"]), $_POST["telefono"], $_POST["direccion"]);
-    }else{
-        $error = true;
+    //Primero se debe verificar que el usuario existe o no existe todavia
+
+        // Intentar autenticar como proveedor
+    $proveedor = new Proveedor(null, $_POST["nombre"], $_POST["apellido"], $_POST["correo"], md5($_POST["clave"]), $_POST["telefono"], $_POST["direccion"]);
+
+        // Intentar autenticar como cliente
+    $cliente = new Cliente(null, $_POST["nombre"], $_POST["apellido"], $_POST["correo"], md5($_POST["clave"]), $_POST["telefono"], $_POST["direccion"]);
+        
+    if ($proveedor->autenticar() || $cliente->autenticar()) {
+        header("Location: iniciarSesion.php?usuarioExiste=true");
+        exit;
     }
-    
-    if (!$persona->registrar()) {
+
+    //Continuar con el flujo
+
+    ($_POST["rol"] == "proveedor")? $esProveedor = true : $esProveedor = false;
+
+    if (!$proveedor->registrar() || !$cliente->registrar()) {
         $error = true;
     } 
 
     header("Location: iniciarSesion.php?registro=true");
+    exit();
 }
 
 require 'head.php';

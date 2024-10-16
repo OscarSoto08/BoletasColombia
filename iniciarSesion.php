@@ -35,8 +35,8 @@ require 'head.php';
 <body>  
 <?php require 'Encabezado.php'; ?>
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-lg-4 col-md-8 col-sm-12 mx-auto">
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-4 col-md-6 col-sm-8">
             <p id="heading">Bienvenido de nuevo</p>
             <?php if (isset($_GET["registro"])) { ?>
                 <div class="space-y-2 p-4">
@@ -67,12 +67,21 @@ require 'head.php';
                     <a class="button2" href="registro.php">Registrarse</a>
                 </div>
                 <button class="button3">Olvidé mi contraseña</button>
+                <!-- Manejo de errores -->
                 <?php if ($error) { ?>
                     <div class="error">
                         <div class="error__icon">
                             <i class="fa-solid fa-circle-exclamation"></i>
                         </div>
                         <div class="error__title">Error, verifique las credenciales</div>
+                    </div>
+                <?php } ?>
+                <?php if (isset($_GET["usuarioExiste"])) { ?>
+                    <div class="error">
+                        <div class="error__icon">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                        </div>
+                        <div class="error__title">El usuario que ingresaste ya existe</div>
                     </div>
                 <?php } ?>
             </form>
