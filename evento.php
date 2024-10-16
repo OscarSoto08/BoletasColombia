@@ -1,5 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION["id"])){
+    header("Location: iniciarSesion.php");   
+}
+
+$idProv = $_SESSION["id"];
 include ("logica/Ciudad.php");
+include ("logica/Evento.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +23,7 @@ include ("logica/Ciudad.php");
      <link rel="stylesheet" href="css/style.css">
      <link rel="stylesheet" href="css/profile.css">
 </head>
-<body>
+<body>    
 <?php include ("encProveedor.php");?>
 <div class="container mt-5">
         <div class="row">
@@ -31,6 +38,21 @@ include ("logica/Ciudad.php");
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $evento = new Evento();
+                            $ArrayEventos = $evento->consPorIdProv($idProv);
+                            foreach ($ArrayEventos as $eventoAct) {
+                                echo "<tr>
+                                           <td>".$eventoAct->getIdEvento()."</td> 
+                                           <td>".$eventoAct->getNombre()."</td>
+                                           <td>".$eventoAct->getDescripcion()."</td>
+                                           <td>".$eventoAct->getFecha()."</td>
+                                           <td>".$eventoAct->getdireccion()."</td>
+                                           <td>".$eventoAct->getAforo()."</td>
+                                           <td>".$eventoAct->getCiudad()."</td> 
+                                      </tr>";
+                            }
+                        ?>
                         <tr>
                             <td>1</td>
                             <td>Juan</td>
@@ -79,7 +101,6 @@ include ("logica/Ciudad.php");
                             <?php
                                 $ciudad = new Ciudad();
                                 $ciudades = $ciudad->consultarTodos();
-                                echo "Hollas";
                                 foreach ($ciudades as $ciudad){
                                     echo "<option value=".$ciudad->getIdCiudad().">".$ciudad->getNombre()."</option>";
                                 }

@@ -8,6 +8,7 @@ class Evento{
     private $fecha;
     private $direccion;
     private $aforo;
+    private $ciudad;
 
     
 
@@ -30,7 +31,9 @@ class Evento{
     public function getAforo(){
         return $this->aforo;
     }
-
+    public function getCiudad(){
+        return $this->ciudad;
+    }
 
     //Aqui van los setters
     public function setIdEvento($idEvento){
@@ -51,14 +54,18 @@ class Evento{
     public function setAforo($aforo){
         $this -> aforo = $aforo;
     }
+    public function setCiudad($ciudad){
+        $this ->ciudad = $ciudad;
+    }
     //Constructor, coloca los parametros nulos o vacios por defecto
-    public function __construct($idEvento = "", $nombre = "", $descripcion = "", $fecha = null, $direccion = "", $aforo = ""){
+    public function __construct($idEvento = "", $nombre = "", $descripcion = "", $fecha = null, $direccion = "", $aforo = "", $ciudad = null){
         $this->idEvento = $idEvento;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->fecha = $fecha;
         $this->direccion = $direccion;
         $this->aforo = $aforo;
+        $this->ciudad = $ciudad;
     }
 
     public function consultarTodos(){
@@ -74,6 +81,26 @@ class Evento{
                 $registro[3],
                 $registro[4],
                 $registro[5],
+                $registro[6]
+            );
+            array_push($Eventos, $Evento);
+        }
+        return $Eventos;
+    }
+    public function consPorIdProv($id){
+        $Eventos = array();
+        $conn = new Conexion(); 
+        $conn->abrirConexion();
+        $EventoDAO = new EventoDAO();
+        $conn -> ejecutarConsulta($EventoDAO -> consultarIdProv($id));
+        while($registro = $conn -> siguienteRegistro()){
+            $Evento = new Evento($registro[0],
+                $registro[1],
+                $registro[2],
+                $registro[3],
+                $registro[4],
+                $registro[5],
+                $registro[6]
             );
             array_push($Eventos, $Evento);
         }
