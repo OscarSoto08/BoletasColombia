@@ -5,7 +5,7 @@
 
 
         public function consultarTodos(){
-            $sql = "select idCiudad, nombre from ciudad";
+            $sql = "select idCiudad, nombre from Ciudad";
             return $sql;
         }
     }

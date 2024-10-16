@@ -58,7 +58,7 @@ class Evento{
         $this ->ciudad = $ciudad;
     }
     //Constructor, coloca los parametros nulos o vacios por defecto
-    public function __construct($idEvento = "", $nombre = "", $descripcion = "", $fecha = null, $direccion = "", $aforo = "", $ciudad = null){
+    public function __construct($idEvento = "", $nombre = "", $descripcion = "", $direccion = "", $aforo = "", $fecha = null, $ciudad = null){
         $this->idEvento = $idEvento;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
@@ -87,6 +87,36 @@ class Evento{
         }
         return $Eventos;
     }
+    public function consultarEveId(){
+        $conn = new Conexion(); 
+        $conn->abrirConexion();
+        $EventoDAO = new EventoDAO($this->idEvento);
+        $conn -> ejecutarConsulta($EventoDAO -> consultarEveId());
+        $registro = $conn -> siguienteRegistro();
+        $Evento = new Evento($this->idEvento,
+            $registro[0],
+            $registro[1],
+            $registro[2],
+            $registro[3],
+            $registro[4],
+            $registro[5]
+        );
+        return $Evento;
+    }
+    public function regisEven($idProv){
+        $con = new Conexion();
+        $con -> abrirConexion();
+        $EventoDAO = new EventoDAO(null, $this->nombre, $this->descripcion, $this->fecha, $this->direccion, $this->aforo, $this->ciudad);
+        $con -> ejecutarConsulta($EventoDAO -> regisEven());
+        $EventoDAO -> setIdEvento($con->obtenerLlaveAutonumerica());
+        $con -> ejecutarConsulta($EventoDAO -> regisGesEve($idProv));
+    }
+    public function actEven(){
+        $con = new Conexion();
+        $con -> abrirConexion();
+        $EventoDAO = new EventoDAO($this->idEvento, $this->nombre, $this->descripcion, $this->fecha, $this->direccion, $this->aforo, $this->ciudad);
+        $con -> ejecutarConsulta($EventoDAO -> actEven());
+    }
     public function consPorIdProv($id){
         $Eventos = array();
         $conn = new Conexion(); 
@@ -105,6 +135,13 @@ class Evento{
             array_push($Eventos, $Evento);
         }
         return $Eventos;
+    }
+    public function eliminarEvento(){
+        $con = new Conexion();
+        $con -> abrirConexion();
+        $eventoDAO = new EventoDAO($this->idEvento);
+        $con -> ejecutarConsulta($eventoDAO ->eliminarGesEve());
+        $con -> ejecutarConsulta($eventoDAO ->eliminarEve());
     }
 }
 ?>
