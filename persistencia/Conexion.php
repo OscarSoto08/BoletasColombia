@@ -6,11 +6,6 @@ class Conexion{
     
     public function abrirConexion(){
         $this -> mysqlConexion = new mysqli("localhost", "root", "", "BoletasColombia");
-        if(!$this -> mysqlConexion->connect_error){
-            // echo "conexion exitosa";
-        }else{
-            echo "hubo un problema";
-        }
     }
     
     public function ejecutarConsulta($sentenciaSQL){
@@ -27,6 +22,10 @@ class Conexion{
     
     public function cerrarConexion(){
         $this -> mysqlConexion -> close();
+    }
+    
+    public function numeroFilas(){
+        return $this -> resultado -> num_rows;
     }
 }
 
