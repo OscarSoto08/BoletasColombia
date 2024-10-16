@@ -21,8 +21,6 @@
             $this->idCiudad = $idCiudad;
             $this->nombre = $nombre;
         }
-        
-
         public function consultarTodos(){
             $ciudades = array();
             $conn = new Conexion;
