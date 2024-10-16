@@ -131,3 +131,9 @@ INSERT INTO BoletaDisponible (idBoletaVendida, precio, Evento_idEvento, TipoBole
 (9, 400.00, 9, 9, 1),
 (10, 350.00, 10, 10, 0);
 
+
+UPDATE TABLE Administrador 
+SET clave = md5(clave);
+
+UPDATE TABLE Cliente
+SET cave = md5(clave);

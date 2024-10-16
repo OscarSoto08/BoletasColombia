@@ -1,8 +1,9 @@
 <?php
 require_once ("./persistencia/Conexion.php");
-require ("./persistencia/ProveedorDAO.php");
 
-class Persona{
+
+
+abstract class Persona{
     protected $idPersona;
     protected $nombre;
     protected $apellido;
@@ -67,7 +68,10 @@ class Persona{
         $this -> telefono = $telefono;
         $this -> direccion = $direccion;
     }
+
+    abstract function autenticar();
     
+    abstract function registrar();
 }
 
 ?>
