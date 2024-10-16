@@ -14,5 +14,8 @@ class EventoDAO{
         FROM Evento";
         return $sql;
     }
+    public function consultarIdProv( ){
+        $sql = "select idEvento, nombre descripcion, direccion, aforo, fecha, Ciudad_idCiudad";
+    }
 }
 ?>
