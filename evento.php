@@ -177,7 +177,7 @@ if(isset($_POST["idOp"])){
                                 ?>
                             <select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
                     <?php
                         }
                     ?>
