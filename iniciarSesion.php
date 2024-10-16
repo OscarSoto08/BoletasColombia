@@ -4,7 +4,7 @@ require ("logica/Persona.php");
 require ("logica/Proveedor.php");
 $error = false;
 if(isset($_POST["autenticar"])){
-    $proveedor = new Proveedor(null, null, null, $_POST["correo"], $_POST["clave"], null, null);
+    $proveedor = new Proveedor(null, null, null, $_POST["correo"], md5($_POST["clave"]), null, null);
     if($proveedor -> autenticar()){
         $_SESSION["id"] = $proveedor -> getIdPersona();
         header("Location: sesionProveedor.php");     

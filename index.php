@@ -16,6 +16,10 @@
     <?php 
         require 'Encabezado.php';
         require 'Carrusel.php';
+        session_start();
+        if(isset($_GET['logout'])){
+            session_destroy();
+        }
     ?>
 
         <h2 class="text-center mb-4">Eventos disponibles</h2>

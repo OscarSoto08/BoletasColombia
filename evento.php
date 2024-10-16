@@ -11,6 +11,7 @@
 
     <!-- Custom CSS -->
      <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
 <?php include ("encProveedor.php");?>
@@ -18,25 +19,29 @@
         <div class="row">
             <!-- Columna izquierda con tabla -->
             <div class="col-md-8">
-                <h2>Tabla de Ejemplo</h2>
-                <table class="table table-bordered">
+                <h2 class="mx-auto">Lista de eventos</h2>
+                <table>
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nombre</th>
-                            <th>Edad</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
                             <td>Juan</td>
-                            <td>28</td>
+                            <td class="text-center">
+                                    <button class="btn btn-sm btn-primary">Editar</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>María</td>
-                            <td>34</td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-primary">Editar</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -44,7 +49,7 @@
             
             <!-- Columna derecha con formulario -->
             <div class="col-md-4">
-                <h2>Formulario</h2>
+                <h2>Nuevo Evento</h2>
                 <form>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
