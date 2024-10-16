@@ -14,43 +14,36 @@ include ("logica/Ciudad.php");
 
     <!-- Custom CSS -->
      <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
 <?php include ("encProveedor.php");?>
 <div class="container mt-5">
         <div class="row">
             <div class="col-md-8">
-                <h2>Tus Eventos</h2>
-                <table class="table table-bordered">
+                <h2 class="mx-auto">Lista de eventos</h2>
+                <table>
                     <thead>
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Dirección</th>
-                            <th>Aforo</th>
-                            <th>Fecha</th>
-                            <th>Ciudad</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
                             <td>Juan</td>
-                            <td>Evento al aire libre</td>
-                            <td>Calle 54 sur #33a - 89</td>
-                            <td>33</td>
-                            <td>30/12/2000</td>
-                            <td>Bogotá</td>
+                            <td class="text-center">
+                                    <button class="btn btn-sm btn-primary">Editar</button>
+                            </td>
                         </tr>
                         <tr>
-                        <td>1</td>
-                            <td>Juan</td>
-                            <td>Evento al aire libre</td>
-                            <td>Calle 54 sur #33a - 89</td>
-                            <td>33</td>
-                            <td>30/12/2000</td>
-                            <td>Bogotá</td>
+                            <td>2</td>
+                            <td>María</td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-primary">Editar</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,7 +51,7 @@ include ("logica/Ciudad.php");
             
             <!-- Columna derecha con formulario -->
             <div class="col-md-4">
-                <h2>Formulario</h2>
+                <h2>Nuevo Evento</h2>
                 <form>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>

@@ -1,111 +1,96 @@
+-- SQL para el sistema de gestión de boletas y eventos
+-- Incluyendo tablas relacionadas: BoletaDisponible, BoletaVendida, Ciudad, Cliente, Compra, Evento, Factura, TipoBoleta
+
 CREATE DATABASE BoletasColombia;
 USE BoletasColombia;
 
--- primero tablas independientes
--- Tabla ciudad
-CREATE TABLE Ciudad(
-	idCiudad int PRIMARY KEY AUTO_INCREMENT,
-    nombre varchar(45) not null
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- Tabla proveedor
-CREATE TABLE Proveedor(
-	idProveedor INT PRIMARY KEY AUTO_INCREMENT,
-    nombre varchar(45) not null,
-    apellido varchar(45) not null,
-    correo varchar(100) not null,
-    clave varchar(255) not null,
-    telefono varchar(45)  null,
-    direccion varchar(100) not null
-);
+-- Crear la tabla Ciudad
+CREATE TABLE `Ciudad` (
+  `idCiudad` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idCiudad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Tabla Cliente
-CREATE TABLE Cliente(
-	idCliente INT PRIMARY KEY AUTO_INCREMENT,
-    nombre varchar(45) not null,
-    apellido varchar(45)not null,
-    correo varchar(100) not null,
-    clave varchar(255) not null,
-    telefono varchar(45) null,
-    direccion varchar(100) not null
-);
+-- Crear la tabla Evento
+CREATE TABLE `Evento` (
+  `idEvento` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` TEXT NOT NULL,
+  `direccion` VARCHAR(45) NOT NULL,
+  `aforo` INT(11) NOT NULL,
+  `fecha` DATE NOT NULL,
+  `Ciudad_idCiudad` INT(11) NOT NULL,
+  PRIMARY KEY (`idEvento`),
+  FOREIGN KEY (`Ciudad_idCiudad`) REFERENCES `Ciudad`(`idCiudad`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Tipo Boleta
-CREATE TABLE TipoBoleta(
-    idTipoBoleta int primary key AUTO_INCREMENT,
-    nombre varchar(45) not null
-);
+-- Crear la tabla Cliente
+CREATE TABLE `Cliente` (
+  `idCliente` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `correo` VARCHAR(100) NOT NULL,
+  `clave` VARCHAR(255) NOT NULL,
+  `telefono` VARCHAR(45) DEFAULT NULL,
+  `direccion` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Tabla Factura
-CREATE TABLE Factura(
-    idFactura int primary key AUTO_INCREMENT,
-    fecha date not null,
-    impuestos decimal(10,2) not null,
-    total decimal(10,2) not null
-);
+-- Crear la tabla Factura
+CREATE TABLE `Factura` (
+  `idFactura` INT(11) NOT NULL AUTO_INCREMENT,
+  `fecha` DATE NOT NULL,
+  `impuestos` DECIMAL(10,2) NOT NULL,
+  `total` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`idFactura`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Tabla Evento
-CREATE TABLE Evento(
-    idEvento int primary key AUTO_INCREMENT,
-    nombre varchar(45) not null,
-    descripcion text not null,
-    direccion varchar(45) not null,
-    aforo int not null,
-    fecha date not null,
-    Ciudad_idCiudad int not null,
-	
-    foreign key(Ciudad_idCiudad) references Ciudad(idCiudad)
-);
+-- Crear la tabla TipoBoleta
+CREATE TABLE `TipoBoleta` (
+  `idTipoBoleta` INT(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idTipoBoleta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Crear la tabla BoletaDisponible
+CREATE TABLE `BoletaDisponible` (
+  `idBoletaDisponible` INT(11) NOT NULL AUTO_INCREMENT,
+  `precio` DECIMAL(10,2) NOT NULL,
+  `Evento_idEvento` INT(11) NOT NULL,
+  `TipoBoleta_idTipoBoleta` INT(11) NOT NULL,
+  `reservada` TINYINT(1) NOT NULL DEFAULT 0, -- 0: no reservada, 1: reservada
+  PRIMARY KEY (`idBoletaDisponible`),
+  FOREIGN KEY (`Evento_idEvento`) REFERENCES `Evento`(`idEvento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`TipoBoleta_idTipoBoleta`) REFERENCES `TipoBoleta`(`idTipoBoleta`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Relacion de evento y proveedor
-CREATE TABLE GestionEventos(
-    Evento_idEvento int,
-	Proveedor_idProveedor int,
-    rolProveedor enum('Creador','Gestor') not null,
-    
-    primary key(Evento_idEvento, Proveedor_idProveedor),
-    foreign key(Evento_idEvento) references Evento(idEvento),
-	foreign key(Proveedor_idProveedor) references Proveedor(idProveedor)
-);
+-- Crear la tabla Compra
+CREATE TABLE `Compra` (
+  `idCompra` INT(11) NOT NULL AUTO_INCREMENT,
+  `Cliente_idCliente` INT(11) NOT NULL,
+  `Evento_idEvento` INT(11) NOT NULL,
+  `fechaCompra` DATETIME NOT NULL,
+  `subtotal` DECIMAL(10,2) NOT NULL,
+  `estado` ENUM('Completada','Cancelada','Pendiente') NOT NULL DEFAULT 'Pendiente',
+  PRIMARY KEY (`idCompra`),
+  FOREIGN KEY (`Cliente_idCliente`) REFERENCES `Cliente`(`idCliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`Evento_idEvento`) REFERENCES `Evento`(`idEvento`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
--- tabla compra 
-CREATE TABLE Compra(
-    idCompra int,
-	Cliente_idCliente int not null,
-    Evento_idEvento int not null,
-    fechaCompra datetime not null,
-    subtotal decimal(10,2) not null,
-    estado enum('Completada', 'Pendiente', 'Cancelada') not null,
-    
-    primary key(idCompra),
-    foreign key(Cliente_idCliente) references Cliente(idCliente),
-	foreign key(Evento_idEvento) references Evento(idEvento)
-);
-
--- las boletassss
-
-create table BoletaVendida(
-    idBoletaVendida int primary key,
-    precio decimal(10,2) not null,
-    nombreUsuario varchar(45) not null,
-    Compra_idCompra int not null,
-    Factura_idFactura int not null,
-    TipoBoleta_idTipoBoleta int not null,
-    
-    foreign key(Compra_idCompra) references Compra(idCompra),
-    foreign key(Factura_idFactura) references Factura(idFactura),
-    foreign key(TipoBoleta_idTipoBoleta) references TipoBoleta(idTipoBoleta)
-);
-
-
-create table BoletaDisponible(
-    idBoletaVendida int primary key,
-    precio decimal(10,2) not null,
-    Evento_idEvento int not null,
-    TipoBoleta_idTipoBoleta int not null,
-    reservada tinyint not null,
-    
-    foreign key(TipoBoleta_idTipoBoleta) references TipoBoleta(idTipoBoleta)
-);
+-- Crear la tabla BoletaVendida
+CREATE TABLE `BoletaVendida` (
+  `idBoletaVendida` INT(11) NOT NULL AUTO_INCREMENT,
+  `precio` DECIMAL(10,2) NOT NULL,
+  `nombreUsuario` VARCHAR(45) NOT NULL,
+  `Compra_idCompra` INT(11) NOT NULL,
+  `Factura_idFactura` INT(11) NOT NULL,
+  `TipoBoleta_idTipoBoleta` INT(11) NOT NULL,
+  PRIMARY KEY (`idBoletaVendida`),
+  FOREIGN KEY (`Compra_idCompra`) REFERENCES `Compra`(`idCompra`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`Factura_idFactura`) REFERENCES `Factura`(`idFactura`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`TipoBoleta_idTipoBoleta`) REFERENCES `TipoBoleta`(`idTipoBoleta`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

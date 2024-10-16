@@ -20,13 +20,13 @@ class ProveedorDAO{
     
     public function autenticar(){
         return "select idProveedor
-                from proveedor 
+                from Proveedor 
                 where correo = '" . $this -> correo . "' and clave = '" . $this -> clave . "'";
     }
     
     public function consultar(){
         return "select nombre, apellido, correo, telefono, direccion
-                from proveedor
+                from Proveedor
                 where idProveedor = '" . $this -> idPersona . "'";
     }
 }
