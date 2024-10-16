@@ -18,6 +18,8 @@
     /* Tipografía */
     font-family: Arial, sans-serif;
     color: #333333;
+    overflow: scroll;
+    gap: 15px;
 }
 
 .navbar-nav .nav-item {
@@ -25,7 +27,8 @@
 }
 
 table {
-	width: 800px;
+    width: 100%;
+    height: auto;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -75,4 +78,10 @@ tbody {
         color: black;
         padding: 7px;
     }
+}
+.btn{
+    width: 35%;
+    padding: 10px;
+    color: black;
+    border-radius: 12px !important;
 }

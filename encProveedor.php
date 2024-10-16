@@ -9,6 +9,7 @@ require ("logica/Persona.php");
 require ("logica/Proveedor.php");
 $proveedor = new Proveedor($id);
 $proveedor -> consultar();
+
 ?>
 <div class="header">
     <h1>Boletas Colombia</h1>
