@@ -29,5 +29,16 @@ class ProveedorDAO{
                 from Proveedor
                 where idProveedor = '" . $this -> idPersona . "'";
     }
+
+    public function insertar(){
+        return 
+        "INSERT INTO `Proveedor`(`idProveedor`, `nombre`, `apellido`, `correo`, `clave`, `telefono`, `direccion`) 
+        VALUES ('".$this -> idPersona."','".$this -> nombre ."','".$this -> apellido."','".$this -> correo ."','".$this -> clave ."','".$this -> telefono ."','".$this -> direccion."')";
+    }
+    public function maxID(){
+        return 
+        "SELECT max(idProveedor)
+        FROM Proveedor";
+    }
 }
 ?>

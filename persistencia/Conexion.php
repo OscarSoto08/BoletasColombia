@@ -26,6 +26,14 @@ class Conexion{
     public function numeroFilas(){
         return $this -> resultado -> num_rows;
     }
+
+    public function errorSQL(){
+        return $this -> mysqlConexion -> error;
+    }
+
+    public function getResultado(){
+        return $this -> resultado;
+    }
 }
 
 ?>

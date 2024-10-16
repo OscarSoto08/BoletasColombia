@@ -74,7 +74,7 @@ include("logica/Ciudad.php");
                         $ciudad = new Ciudad();
                         $ciudades = $ciudad->consultarTodos();
                         foreach ($ciudades as $ciudad) {
-                            echo "<option value=\"" . htmlspecialchars($ciudad->getIdCiudad()) . "\">" . htmlspecialchars($ciudad->getNombre()) . "</option>";
+                            echo "<option class='form-control' value=\"" . htmlspecialchars($ciudad->getIdCiudad()) . "\">" . htmlspecialchars($ciudad->getNombre()) . "</option>";
                         }
                         ?>
                     </select>

@@ -13,12 +13,12 @@
     transform: scale(1.05);
     border: 1px solid black;
   }
-  
+
   #heading {
     text-align: center;
-    margin: 2em;
+    margin: 1em;
     color: rgb(255, 255, 255);
-    font-size: 1.2em;
+    font-size: 1.8em;
   }
   
   .field {
@@ -106,3 +106,70 @@
     background-color: red;
     color: white;
   }
+
+  a{
+    text-decoration: none;
+  }
+
+  .role-selection {
+    padding: 10px;
+    margin-left: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-around;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+    color: #ffffff;
+}
+
+.form-check {
+    display: block;
+    width: 45%;
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.form-check-label {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.form-check-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.form-check-input:checked {
+    background-color: #724caf;
+    border-color: #292ba3;
+}
+
+.form-check-input:checked::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.form-check-input:hover {
+    border-color: #888;
+}
