@@ -29,16 +29,16 @@ class EventoDAO{
     }
     public function consultarEveId(){
         $sql = "select nombre, descripcion, direccion, aforo, fecha, Ciudad_idCiudad
-                from evento where idEvento=".$this->idEvento."";
+                from Evento where idEvento=".$this->idEvento."";
         return $sql;
     }
     public function regisEven(){
-        $sql = "insert into evento (nombre, descripcion, direccion, aforo, fecha, Ciudad_idCiudad)
+        $sql = "insert into Evento (nombre, descripcion, direccion, aforo, fecha, Ciudad_idCiudad)
                 values ('".$this->nombre."','".$this->descripcion."','".$this->direccion."',".$this->aforo.",'".$this->fecha."',".$this->ciudad.")";
                 return $sql;
     }
     public function actEven(){
-        $sql = "update evento
+        $sql = "update Evento
                 set nombre = '".$this->nombre."', descripcion = '".$this->descripcion."', direccion = '".$this->direccion."', aforo= ".$this->aforo.", fecha='".$this->fecha."', Ciudad_idCiudad = ".$this->ciudad."
                 where idEvento = ".$this->idEvento."";
         return $sql;
@@ -50,16 +50,16 @@ class EventoDAO{
         return $sql;
     }
     public function regisGesEve($idProv){
-        $sql="insert into gestioneventos (Evento_idEvento, Proveedor_idProveedor, rolProveedor)
+        $sql="insert into GestionEventos (Evento_idEvento, Proveedor_idProveedor, rolProveedor)
               values (".$this->idEvento.",".$idProv.",'Creador')";
         return $sql;
     }
     public function eliminarGesEve(){
-        $sql = "delete from gestioneventos where Evento_idEvento = ".$this->idEvento.";";
+        $sql = "delete from GestionEventos where Evento_idEvento = ".$this->idEvento.";";
         return $sql;
     }
     public function eliminarEve(){
-        $sql = "delete from evento where idEvento = ".$this->idEvento.";";
+        $sql = "delete from Evento where idEvento = ".$this->idEvento.";";
         return $sql;
     }
 }   

@@ -1,6 +1,7 @@
 <?php
 require_once './persistencia/Conexion.php';
 require './persistencia/EventoDAO.php';
+include ("Ciudad.php");
 class Evento{
     private $idEvento;
     private $nombre;
@@ -75,13 +76,15 @@ class Evento{
         $EventoDAO = new EventoDAO();
         $conn -> ejecutarConsulta($EventoDAO -> consultarTodos());
         while($registro = $conn -> siguienteRegistro()){
+            $ciudad = new Ciudad($registro[6]);
+            $ciudad -> consultar();
             $Evento = new Evento($registro[0],
                 $registro[1],
                 $registro[2],
                 $registro[3],
                 $registro[4],
                 $registro[5],
-                $registro[6]
+                $ciudad
             );
             array_push($Eventos, $Evento);
         }
@@ -93,13 +96,15 @@ class Evento{
         $EventoDAO = new EventoDAO($this->idEvento);
         $conn -> ejecutarConsulta($EventoDAO -> consultarEveId());
         $registro = $conn -> siguienteRegistro();
+        $ciudad = new Ciudad($registro[5]);
+        $ciudad -> consultar();
         $Evento = new Evento($this->idEvento,
             $registro[0],
             $registro[1],
             $registro[2],
             $registro[3],
             $registro[4],
-            $registro[5]
+            $ciudad
         );
         return $Evento;
     }
@@ -124,13 +129,15 @@ class Evento{
         $EventoDAO = new EventoDAO();
         $conn -> ejecutarConsulta($EventoDAO -> consultarIdProv($id));
         while($registro = $conn -> siguienteRegistro()){
+            $ciudad = new Ciudad($registro[6]);
+            $ciudad -> consultar();
             $Evento = new Evento($registro[0],
                 $registro[1],
                 $registro[2],
                 $registro[3],
                 $registro[4],
                 $registro[5],
-                $registro[6]
+                $ciudad
             );
             array_push($Eventos, $Evento);
         }

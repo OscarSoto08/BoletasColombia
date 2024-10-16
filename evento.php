@@ -1,16 +1,7 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
-if (!isset($_SESSION["id"])){
-    header("Location: iniciarSesion.php");   
-}
 
-$idProv = $_SESSION["id"];
-include ("logica/Ciudad.php");
-include ("logica/Evento.php");
-
+include ("encProveedor.php");
 if (isset($_POST["nombre"],$_POST["descripcion"],$_POST["direccion"],$_POST["aforo"],$_POST["fecha"],$_POST["ciudad"])){
     $evento = new Evento(null,$_POST["nombre"],$_POST["descripcion"],$_POST["direccion"],$_POST["aforo"],$_POST["fecha"],$_POST["ciudad"]);
     $evento->regisEven($_SESSION["id"]);
@@ -25,28 +16,14 @@ if(isset($_POST["idOp"])){
     $evento = new Evento($_POST["idOp"]);
     $evento -> eliminarEvento();
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proveedor</title>
+require 'head.php'; ?>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <!-- Custom CSS -->
-     <link rel="stylesheet" href="css/style.css">
-     <link rel="stylesheet" href="css/profile.css">
-</head>
 <body>    
-<?php include ("encProveedor.php");?>
+<link rel="stylesheet" href="css/profile.css">
 <div class="container mt-5">
         <div class="row">
             <div class="col-md-8">
-                <h2 class="mx-auto">Lista de eventos</h2>
+                <h2 class="mx-auto my-3">Lista de eventos</h2>
                 <table>
                     <thead>
                         <tr>
@@ -65,6 +42,7 @@ if(isset($_POST["idOp"])){
                             $evento = new Evento();
                             $ArrayEventos = $evento->consPorIdProv($idProv);
                             foreach ($ArrayEventos as $eventoAct) {
+                                
                                 echo "<tr>
                                            <td>".$eventoAct->getIdEvento()."</td> 
                                            <td>".$eventoAct->getNombre()."</td>
@@ -72,7 +50,7 @@ if(isset($_POST["idOp"])){
                                            <td>".$eventoAct->getdireccion()."</td>
                                            <td>".$eventoAct->getAforo()."</td>
                                            <td>".$eventoAct->getFecha()."</td>
-                                           <td>".$eventoAct->getCiudad()."</td>
+                                           <td>".$eventoAct->getCiudad()->getNombre()."</td>
                                            <td><button class='btn btn-sm btn-primary'>Editar</button>
                                            <form action='evento.php' method='post'>
                                                 <input type='hidden' name='idOp' value='".$eventoAct->getIdEvento()."'>
@@ -93,7 +71,7 @@ if(isset($_POST["idOp"])){
             
             <!-- Columna derecha con formulario -->
             <div class="col-md-4">
-                <h2>Nuevo Evento</h2>
+                <h2 class="my-3">Panel de control de Eventos</h2>
                 <form action="evento.php" method="post">
                     <?php
                         if(isset($_POST["idAct"])){

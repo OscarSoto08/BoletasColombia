@@ -173,3 +173,9 @@
 .form-check-input:hover {
     border-color: #888;
 }
+
+tr .btn{
+  margin: 5px 0;
+  width: 100%;
+  
+}

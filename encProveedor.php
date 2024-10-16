@@ -1,13 +1,19 @@
 
 <?php
-session_start();
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION["id"])){
     header("Location: iniciarSesion.php");
 }
-$id = $_SESSION["id"];
+
+$idProv = $_SESSION["id"];
 require ("logica/Persona.php");
 require ("logica/Proveedor.php");
-$proveedor = new Proveedor($id);
+//include ("logica/Ciudad.php");
+include ("logica/Evento.php");
+$proveedor = new Proveedor($idProv);
 $proveedor -> consultar();
 
 ?>

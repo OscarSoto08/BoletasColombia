@@ -34,5 +34,14 @@
             }
             return $ciudades;
         }
+        public function consultar(){
+            $conexion = new Conexion();
+            $conexion -> abrirConexion();
+            $CiudadDAO = new CiudadDAO($this -> idCiudad);
+            $conexion -> ejecutarConsulta($CiudadDAO -> consultar());
+            $registro = $conexion -> siguienteRegistro();
+            $this -> nombre = $registro[0];
+            $conexion -> cerrarConexion();
+        }
     }
 ?>
