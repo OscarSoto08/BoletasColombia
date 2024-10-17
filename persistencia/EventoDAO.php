@@ -23,8 +23,9 @@ class EventoDAO{
     //Consultar todos
     public function consultarTodos(){
         $sql = 
-        "SELECT idEvento, nombre, descripcion, fecha, direccion, aforo, Ciudad_idCiudad
-        FROM Evento";
+        "SELECT idEvento, nombre, descripcion, direccion, aforo, fecha, Ciudad_idCiudad, imagen
+        FROM Evento
+        ORDER BY aforo DESC";
         return $sql;
     }
     public function consultarEveId(){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-10-2024 a las 20:53:25
+-- Tiempo de generación: 17-10-2024 a las 03:24:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -186,25 +186,26 @@ CREATE TABLE `Evento` (
   `direccion` varchar(45) NOT NULL,
   `aforo` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `Ciudad_idCiudad` int(11) NOT NULL
+  `Ciudad_idCiudad` int(11) NOT NULL,
+  `imagen` varchar(255) DEFAULT 'https://i.ibb.co/C2Kbgx6/icono.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Evento`
 --
 
-INSERT INTO `Evento` (`idEvento`, `nombre`, `descripcion`, `direccion`, `aforo`, `fecha`, `Ciudad_idCiudad`) VALUES
-(1, 'Concierto de Rock', 'Un gran concierto de las mejores bandas de rock.', 'Teatro Nacional', 1000, '2024-11-01', 1),
-(2, 'Festival de Música', 'Un festival que reúne a artistas de todo el mundo.', 'Parque Simón Bolívar', 5000, '2024-11-10', 1),
-(3, 'Obra de Teatro', 'Una obra teatral que cautivará a todos.', 'Teatro Colón', 300, '2024-11-15', 1),
-(4, 'Exposición de Arte', 'Exposición de artistas locales.', 'Centro Cultural', 1500, '2024-11-20', 2),
-(5, 'Feria Gastronómica', 'Disfruta de los mejores platos típicos.', 'Parque de la 93', 2000, '2024-11-25', 3),
-(6, 'Conferencia Tecnológica', 'Conferencias sobre avances tecnológicos.', 'Auditorio Mayor', 800, '2024-11-30', 4),
-(7, 'Maratón', 'Una maratón abierta para todos los corredores.', 'Paseo del Río', 2000, '2024-12-05', 5),
-(8, 'Día del Niño', 'Eventos y actividades para los más pequeños.', 'Plaza de la Ciudad', 3000, '2024-12-10', 6),
-(9, 'Concierto de Navidad', 'Celebración navideña con música en vivo.', 'Parque Central', 5000, '2024-12-15', 7),
-(10, 'Festival de Cine', 'Proyecciones de los mejores cortometrajes.', 'Sala de Cine', 400, '2024-12-20', 8),
-(13, 'Feria de las flores', 'Un emocionante carnaval de medellin', 'cra 13 #62bis -80', 5000, '2025-10-26', 2);
+INSERT INTO `Evento` (`idEvento`, `nombre`, `descripcion`, `direccion`, `aforo`, `fecha`, `Ciudad_idCiudad`, `imagen`) VALUES
+(1, 'Concierto de Rock', 'Un gran concierto de las mejores bandas de rock.', 'Teatro Nacional', 1000, '2024-11-01', 1, 'https://i.ibb.co/Y8rhVJz/rock-Concierto.jpg'),
+(2, 'Festival de Música', 'Un festival que reúne a artistas de todo el mundo.', 'Parque Simón Bolívar', 5000, '2024-11-10', 1, 'https://i.ibb.co/59W7TkB/mejores-festivales-de-musica.jpg'),
+(3, 'Obra de Teatro', 'Una obra teatral que cautivará a todos.', 'Teatro Colón', 300, '2024-11-15', 1, 'https://i.ibb.co/sK1LQBT/obra-Teatro.jpg'),
+(4, 'Exposición de Arte', 'Exposición de artistas locales.', 'Centro Cultural', 1500, '2024-11-20', 2, 'https://i.ibb.co/VHLbFck/expoArte.jpg'),
+(5, 'Feria Gastronómica', 'Disfruta de los mejores platos típicos.', 'Parque de la 93', 2000, '2024-11-25', 3, 'https://i.ibb.co/2hH6KrG/feria-Gastronomica.jpg'),
+(6, 'Conferencia Tecnológica', 'Conferencias sobre avances tecnológicos.', 'Auditorio Mayor', 800, '2024-11-30', 4, 'https://i.ibb.co/P1ZXKnL/conf-Tecno.jpg'),
+(7, 'Maratón', 'Una maratón abierta para todos los corredores.', 'Paseo del Río', 2000, '2024-12-05', 5, 'https://i.ibb.co/Bjj0GkF/maraton.jpg'),
+(8, 'Día del Niño', 'Eventos y actividades para los más pequeños.', 'Plaza de la Ciudad', 3000, '2024-12-10', 6, 'https://i.ibb.co/KbFHBVw/diaNi-o.jpg'),
+(9, 'Concierto de Navidad', 'Celebración navideña con música en vivo.', 'Parque Central', 5000, '2024-12-15', 7, 'https://i.ibb.co/k9yFGvX/concierto-de-navidad.jpg'),
+(10, 'Festival de Cine', 'Proyecciones de los mejores cortometrajes.', 'Sala de Cine', 400, '2024-12-20', 8, 'https://i.ibb.co/fr865Gv/festCine.jpg'),
+(13, 'Feria de las flores', 'Un emocionante carnaval de medellin', 'cra 13 #62bis -80', 5000, '2025-10-26', 2, 'https://i.ibb.co/DKQW0nN/feria-Flores.jpg');
 
 -- --------------------------------------------------------
 

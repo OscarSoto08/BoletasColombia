@@ -53,7 +53,6 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin-top: 2.5em;
   }
   
   .button1 {
@@ -67,6 +66,7 @@
     transition: .4s ease-in-out;
     background-color: #252525;
     color: white;
+    width: 50%;
   }
   
   .button1:hover {
@@ -75,6 +75,7 @@
   }
   
   .button2 {
+    width: 50%;
     padding: 0.5em;
     padding-left: 2.3em;
     padding-right: 2.3em;
@@ -100,6 +101,8 @@
     transition: .4s ease-in-out;
     background-color: #252525;
     color: white;
+    width: 80%;
+    margin: 0 auto 1.5em auto;
   }
   
   .button3:hover {

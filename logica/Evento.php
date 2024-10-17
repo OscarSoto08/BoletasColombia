@@ -10,56 +10,29 @@ class Evento{
     private $direccion;
     private $aforo;
     private $ciudad;
-
-    
+    private $imagen;
 
     //Aqui van los getters
-    public function getIdEvento(){
-        return $this->idEvento;
-    }
-    public function getNombre(){
-        return $this->nombre;
-    }
-    public function getDescripcion(){
-        return $this->descripcion;
-    }
-    public function getFecha(){
-        return $this->fecha;
-    }
-    public function getdireccion(){
-        return $this->direccion;
-    }
-    public function getAforo(){
-        return $this->aforo;
-    }
-    public function getCiudad(){
-        return $this->ciudad;
-    }
-
-    //Aqui van los setters
-    public function setIdEvento($idEvento){
-        $this -> idEvento = $idEvento;
-    }
-    public function setNombre($nombre){
-        $this -> nombre = $nombre;
-    }
-    public function setDescripcion($descripcion){
-        $this ->descripcion = $descripcion;
-    }
-    public function setFecha($fecha){
-        $this ->fecha = $fecha;
-    }
-    public function setdireccion($direccion){
-        $this ->direccion = $direccion;
-    }
-    public function setAforo($aforo){
-        $this -> aforo = $aforo;
-    }
-    public function setCiudad($ciudad){
-        $this ->ciudad = $ciudad;
-    }
+    public function getIdEvento(){ return $this->idEvento; }
+    public function getNombre(){ return $this->nombre; }
+    public function getDescripcion(){ return $this->descripcion; }
+    public function getFecha(){ return $this->fecha; }
+    public function getdireccion(){ return $this->direccion; }
+    public function getAforo(){ return $this->aforo; }
+    public function getCiudad(){ return $this->ciudad; }
+    public function getImagen(){ return $this->imagen; }
+    // Aqui van los setters
+    public function setIdEvento($idEvento){ $this->idEvento = $idEvento; }
+    public function setNombre($nombre){ $this->nombre = $nombre; }
+    public function setDescripcion($descripcion){ $this->descripcion = $descripcion; }
+    public function setFecha($fecha){ $this->fecha = $fecha; }
+    public function setdireccion($direccion){ $this->direccion = $direccion; }
+    public function setAforo($aforo){ $this->aforo = $aforo; }
+    public function setCiudad($ciudad){ $this->ciudad = $ciudad; }
+    public function setImagen($imagen){ $this->imagen = $imagen; }
+    
     //Constructor, coloca los parametros nulos o vacios por defecto
-    public function __construct($idEvento = "", $nombre = "", $descripcion = "", $direccion = "", $aforo = "", $fecha = null, $ciudad = null){
+    public function __construct($idEvento = "", $nombre = "", $descripcion = "", $direccion = "", $aforo = "", $fecha = null, $ciudad = null, $imagen = null){
         $this->idEvento = $idEvento;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
@@ -67,6 +40,7 @@ class Evento{
         $this->direccion = $direccion;
         $this->aforo = $aforo;
         $this->ciudad = $ciudad;
+        $this -> imagen = $imagen;
     }
 
     public function consultarTodos(){
@@ -78,13 +52,15 @@ class Evento{
         while($registro = $conn -> siguienteRegistro()){
             $ciudad = new Ciudad($registro[6]);
             $ciudad -> consultar();
-            $Evento = new Evento($registro[0],
+            $Evento = new Evento(
+                $registro[0],
                 $registro[1],
                 $registro[2],
                 $registro[3],
                 $registro[4],
                 $registro[5],
-                $ciudad
+                $ciudad,
+                $registro[7]
             );
             array_push($Eventos, $Evento);
         }
